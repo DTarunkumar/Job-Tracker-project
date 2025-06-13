@@ -1,0 +1,28 @@
+# Logs
+logs
+*.log
+
+# Dependencies
+node_modules
+
+# Build output
+dist/
+build/
+.vite
+.vite-cache
+
+# Firebase
+firebase-debug.log
+
+# Environment variables
+.env
+.env.*
+
+# IDE/editor
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Mock data
+src/mock/
