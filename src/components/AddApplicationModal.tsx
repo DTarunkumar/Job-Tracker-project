@@ -104,7 +104,7 @@ export default function AddApplicationModal({ onClose, initialData, onSuccess }:
 
           showSnackbar("Application updated successfully", "success");
         } else {
-          // For new applications, generate a document ref first
+          // For new applications, generating a document ref first
           const docRef = generateApplicationDocRef(currentUser.uid);
           const applicationId = docRef.id;
 
@@ -126,7 +126,7 @@ export default function AddApplicationModal({ onClose, initialData, onSuccess }:
         }
 
         onClose();
-        onSuccess?.(); // refresh list
+        onSuccess?.(); // for refreshing list
       } catch (err) {
         console.error("Failed to submit application:", err);
         showSnackbar("Error submitting application", "error");

@@ -21,5 +21,5 @@ export default function PrivateRoute({ children }: { children: ReactNode }) {
 
   if (loading) return <div className="text-center mt-10">Loading...</div>;
 
-  return authenticated ? children : <Navigate to="/login" replace />;
+  return authenticated ? children : <Navigate to="/" replace />;
 }

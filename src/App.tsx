@@ -1,91 +1,58 @@
-// src/App.tsx  ⟶  completely replace with this version
+// src/App.tsx
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import Sidebar from './components/Sidebar';
-import Snackbar from './components/Snackbar';
-import { SnackbarProvider } from './context/SnackbarContextType';
-import DashboardPage from './pages/DashboardPage';
-import ApplicationsPage from './pages/ApplicationsPage';
-import ProfilePage from './pages/ProfilePage';
-import LoginPage from './pages/Loginpage';
-import RegisterPage from './pages/RegisterPage';
-import ForgotPasswordPage from './pages/ForgotPasswordPage';
-import PrivateRoute from './components/PrivateRouter';
 import { FiMenu } from 'react-icons/fi';
 
-/* ────────────────────────────────────────────────────────── */
-/*  A tiny mobile header (hidden on ≥md screens)              */
-/* ────────────────────────────────────────────────────────── */
-function MobileHeader({ onMenuClick }: { onMenuClick: () => void }) {
+import Sidebar        from './components/Sidebar';
+import PrivateRoute   from './components/PrivateRouter';
+import Snackbar       from './components/Snackbar';
+import { SnackbarProvider } from './context/SnackbarContextType';
+
+import LandingPage      from './pages/LandingPage';
+import DashboardPage    from './pages/DashboardPage';
+import ApplicationsPage from './pages/ApplicationsPage';
+import ProfilePage      from './pages/ProfilePage';
+
+function MobileHeader({ onMenu }: { onMenu: () => void }) {
   return (
-    <header className="md:hidden flex items-center justify-between px-4 py-3 bg-white shadow">
-      <h1 className="text-lg font-bold">Job Tracker</h1>
-      <button
-        aria-label="Open menu"
-        onClick={onMenuClick}
-        className="text-2xl text-gray-700 focus:outline-none"
-      >
+    <header className="md:hidden flex items-center justify-between px-4 py-3 bg-white shadow z-20">
+      <h1 className="font-bold text-lg">Job&nbsp;Tracker</h1>
+      <button onClick={onMenu} aria-label="Open menu" className="text-2xl text-gray-600">
         <FiMenu />
       </button>
     </header>
   );
 }
 
-/* ────────────────────────────────────────────────────────── */
-/*  All the routes + responsive shell                         */
-/* ────────────────────────────────────────────────────────── */
 function AppRoutes() {
-  const location = useLocation();
-  const isAuthPage = ['/login', '/register', '/forgot-password'].includes(location.pathname);
+  const location      = useLocation();
+  const isLanding     = location.pathname === '/';
 
-  // mobile-only drawer controller
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <div
-      className="flex flex-col min-h-screen w-full overflow-x-hidden bg-cover bg-no-repeat bg-center"
-      style={{ backgroundImage: "url('/src/assets/background.png')" }}
+      className={`min-h-screen w-full overflow-x-hidden ${!isLanding && 'flex bg-cover bg-no-repeat bg-center'}`}
+      style={!isLanding ? { backgroundImage: "url('/src/assets/background.png')" } : {}}
     >
-      {/* Sidebar
-           - always visible on md+
-           - slide-in drawer on mobile */}
-      {!isAuthPage && (
-        <>
-          {/* overlay – only mobile & only when drawer is open */}
-          {sidebarOpen && (
-            <div
-              className="fixed inset-0 bg-black/40 md:hidden z-30"
-              onClick={() => setSidebarOpen(false)}
-            />
-          )}
 
-          <Sidebar
-            isOpen={sidebarOpen}                 // let Sidebar control its translate-x
-            onClose={() => setSidebarOpen(false)}
-          />
+      {!isLanding && (
+        <>
+          {drawerOpen && <div className="fixed inset-0 bg-black/40 z-30 md:hidden" onClick={() => setDrawerOpen(false)} />}
+          <Sidebar isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
         </>
       )}
 
-      {/* Main column ------------------------------------------------ */}
       <div className="flex-1 flex flex-col">
-        {/* mobile top-bar */}
-        {!isAuthPage && (
-          <MobileHeader onMenuClick={() => setSidebarOpen(true)} />
-        )}
+        {!isLanding && <MobileHeader onMenu={() => setDrawerOpen(true)} />}
 
-        {/* main routed content */}
-        <main className="flex-1 md:ml-60 p-4 md:p-8"> {/* md:ml-60 keeps content off the fixed sidebar */}
+        <main className={`${!isLanding ? 'md:ml-60 p-4 md:p-8' : ''} flex-1`}>
           <Routes>
-            {/*  🔓 Public  */}
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/"              element={<LandingPage />} />
 
-            {/*  🔒 Private  */}
-            <Route path="/"            element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
-            <Route path="/dashboard"   element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
-            <Route path="/applications"element={<PrivateRoute><ApplicationsPage /></PrivateRoute>} />
-            <Route path="/profile"     element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+            <Route path="/dashboard"     element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
+            <Route path="/applications"  element={<PrivateRoute><ApplicationsPage /></PrivateRoute>} />
+            <Route path="/profile"       element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
           </Routes>
         </main>
       </div>
@@ -93,7 +60,6 @@ function AppRoutes() {
   );
 }
 
-/* ────────────────────────────────────────────────────────── */
 export default function App() {
   return (
     <Router>

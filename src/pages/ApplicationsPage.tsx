@@ -22,7 +22,6 @@ export default function ApplicationsPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
 
-  // useCallback so it's stable between renders
   const fetchApplications = useCallback(async () => {
     if (!currentUser?.uid) return;
     const data = await getApplicationsByUser(currentUser.uid);
