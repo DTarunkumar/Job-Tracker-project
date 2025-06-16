@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import RegisterModal from '../components/RegisterModal';
 import LoginModal from '../components/LoginModal';
 import ForgotPasswordModal from '../components/ForgotPasswordModal';
+
 
 const Section = ({
   children,
@@ -21,6 +22,11 @@ export default function LandingPage() {
     setShowRegister(false);
     window.location.href = '/dashboard';
   };
+
+  useEffect(() => {
+    document.title = "Job Tracker – Dashboard";
+  }, []);
+
 
   return (
     <div className="min-h-screen w-full font-inter text-gray-800 bg-white relative overflow-x-hidden">
