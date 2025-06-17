@@ -32,7 +32,7 @@ export default function LandingPage() {
     <div className="min-h-screen w-full font-inter text-gray-800 bg-white relative overflow-x-hidden">
       <div className="relative h-[46vh] md:h-[52vh] w-full flex items-center justify-center overflow-hidden">
         <img
-          src="src/assets/workspace.png"
+          src="landing/workspace.png"
           className="absolute inset-0 h-full w-full object-cover object-center scale-105 blur-sm"
           alt="workspace background"
         />
@@ -74,7 +74,7 @@ export default function LandingPage() {
             ['download.svg', 'Export as CSV', 'Keep offline records<br/>in one click.'],
           ].map(([icon, title, desc]) => (
             <div key={title as string} className="flex flex-col items-center text-center">
-              <img src={`src/assets/${icon}`} className="h-9 mb-4 opacity-90" alt="" />
+              <img src={`landing/${icon}`} className="h-9 mb-4 opacity-90" alt="" />
               <h3
                 className="font-semibold leading-snug"
                 dangerouslySetInnerHTML={{ __html: title as string }}
@@ -90,7 +90,7 @@ export default function LandingPage() {
 
       <Section className="pb-24">
         <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl ring-1 ring-gray-200">
-          <img src="src/assets/dashboard-shot.png" alt="App screenshot" className="w-full" />
+          <img src="landing/dashboard-shot.png" alt="App screenshot" className="w-full" />
         </div>
       </Section>
 
@@ -104,7 +104,7 @@ export default function LandingPage() {
             ['firebase', 'Firebase'],
           ].map(([key, label]) => (
             <div key={key} className="flex flex-col items-center text-base">
-              <img src={`src/assets/${key}.png`} alt={label} className="h-10 mb-2" />
+              <img src={`landing/${key}.png`} alt={label} className="h-10 mb-2" />
               {label}
             </div>
           ))}

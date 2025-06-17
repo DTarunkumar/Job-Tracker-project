@@ -41,11 +41,11 @@ export default function DashboardPage() {
   const rejected = applications.filter((j) => j.status === "Rejected").length;
 
   return (
-    <div className="pl-8 pr-8 py-8 min-h-screen">
+    <div className="px-4 sm:px-6 md:px-8 py-6 md:py-8 min-h-screen">
       <h1 className="text-3xl font-bold text-gray-800 mb-8">Dashboard</h1>
 
       {/* Stat cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <StatsCard label="Applied" count={applied} color="blue" />
         <StatsCard label="Interviewing" count={interviewing} color="purple" />
         <StatsCard label="Offer" count={offers} color="green" />
@@ -53,7 +53,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
         <div className="bg-white rounded-xl shadow p-4">
           <h3 className="text-lg font-semibold mb-4 text-gray-700">Status by Job Type</h3>
           <StackedBarChart jobs={applications} />
