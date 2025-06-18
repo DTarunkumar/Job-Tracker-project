@@ -1,54 +1,70 @@
-# React + TypeScript + Vite
+# 💼 Job Tracker Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack job application tracking dashboard built with React and Firebase. This web app helps users seamlessly manage their job search process — from tracking applications and uploading resumes to analyzing progress with charts and insights.
 
-Currently, two official plugins are available:
+### 🌐 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 [jobtracker.tarundoranala.me](https://jobtracker.tarundoranala.me)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📌 Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+* 🔐 **User Authentication** with Firebase Auth (Register, Login, Forgot Password)
+* 📄 **Application Management**: Add, edit, delete, and view job applications
+* 📁 **Resume & Cover Letter Uploads** via Firebase Storage
+* 📊 **Dashboard with Visual Insights**:
+
+  * Applications over time (Line Chart)
+  * Job status by type (Stacked Bar Chart)
+* 📂 **Downloadable Files**: Access resumes/cover letters anytime
+* 🔎 **Filtering, Sorting & Searching** by status, type, and date
+* 👤 **User Profile Page**: Manage personal and professional info with profile image
+* ✅ **Mobile Responsive UI** using Tailwind CSS
+* 📥 **Export to CSV** supported
+* 🚀 **Hosted on Firebase with Custom Domain**
+
+---
+
+## 🛠 Tech Stack
+
+| Frontend                   | Backend (BaaS)                    | DevOps / Hosting      |
+| -------------------------- | --------------------------------- | --------------------- |
+| React, TypeScript          | Firebase Auth, Firestore, Storage | Firebase Hosting      |
+| Tailwind CSS               |                                   | GitHub + Firebase CLI |
+| Chart.js, React Router DOM |                                   |                       |
+
+---
+
+## 📸 Screenshots
+
+| Dashboard                                  | Applications                                    | Add Modal                               |
+| ------------------------------------------ | ----------------------------------------------- | --------------------------------------- |
+| ![Dashboard](assets/images/Jobtracker.png) | ![Applications](assets/images/applications.png) | ![AddModal](assets/images/addmodal.png) |
+
+---
+
+## 🧭 Project Structure
+
+```
+job-applications-tracker/
+│
+├── public/
+├── src/
+│   ├── components/
+│   ├── context/
+│   ├── pages/
+│   ├── types/
+│   └── firebase/
+│
+├── firebase.json
+├── package.json
+├── tailwind.config.js
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📃 License
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This project is licensed under the MIT License. See `LICENSE` for details.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
