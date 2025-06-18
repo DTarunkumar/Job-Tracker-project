@@ -36,11 +36,6 @@ A full-stack job application tracking dashboard built with React and Firebase. T
 
 ---
 
-## 📸 Screenshots
-
-| Dashboard                                  | Applications                                    | Add Modal                               |
-| ------------------------------------------ | ----------------------------------------------- | --------------------------------------- |
-| ![Dashboard](assets/images/Jobtracker.png) | ![Applications](assets/images/applications.png) | ![AddModal](assets/images/addmodal.png) |
 
 ---
 
